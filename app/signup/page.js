@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
-import Router from "next/router";
-function SignUp({setSignUp}) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+"use client";
 
-  
+import React, { useState } from "react";
+import Link from "next/link";
+import Router from "next/router";
+import { useRouter } from "next/navigation";
+import { useAppContext } from "@/context/page";
+
+function SignUp() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { setSignUp } = useAppContext();
 
   const signUpHandler = async (event) => {
     event.preventDefault();
-    const res = await fetch("http://localhost:8080/signup", {
+    const res = await fetch("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
@@ -17,7 +22,7 @@ function SignUp({setSignUp}) {
     const data = await res.json();
     alert("Sign up successful");
     setSignUp(true);
-    Router.push("/");
+    router.push("/");
     console.log(data);
   };
   return (
@@ -49,7 +54,7 @@ function SignUp({setSignUp}) {
             onChange={(e) => setPassword(e.target.value)}
           />
           <label className="label">
-            <Link to="/login" className="label-text-alt link link-hover">
+            <Link href="/login" className="label-text-alt link link-hover">
               Have an account?
             </Link>
           </label>

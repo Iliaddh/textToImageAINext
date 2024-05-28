@@ -8,6 +8,7 @@ import { FormField } from "./(components)";
 import Link from "next/link";
 import Logo from "@/assets/logo";
 import Router from "next/navigation";
+import { useAppContext } from "@/context/page";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -19,34 +20,39 @@ const RenderCards = ({ data, title }) => {
 };
 
 function Home() {
-  const [loading, setLoading] = useState(false);
-  const [allPosts, setAllPosts] = useState(null);
-  const [searchText, setSearchText] = useState("");
-  const [searchTimeout, setSearchTimeout] = useState(null);
-  const [searchedResults, setSearchedResults] = useState(null);
-  const [signUp, setSignUp] = useState(false);
-  const [logIn, setLogIn] = useState(false);
+  const {
+    loading,
+    setLoading,
+    logIn,
+    setLogIn,
+    signUp,
+    setSignUp,
+    searchText,
+    setSearchText,
+    allPosts,
+    setAllPosts,
+    searchTimeout,
+    setSearchTimeout,
+    searchedResults,
+    setSearchedResults,
+  } = useAppContext();
 
   const logOutHandler = () => {
     setLogIn(false);
     setSignUp(false);
-  }
-
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
 
       try {
-        const response = await fetch(
-          "/api/post",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch("/api/post", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         if (response.ok) {
           const result = await response.json();
@@ -107,7 +113,7 @@ function Home() {
             </ul>
           </div>
 
-          <Logo/>
+          <Logo />
         </div>
         <div className="navbar-center lg:flex">
           <ul className="menu menu-horizontal px-1">

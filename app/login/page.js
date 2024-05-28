@@ -1,33 +1,32 @@
 "use client";
-  
+
 import React, { useState } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/context/page";
 
-function Login({setLogIn}) {  
+function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
+  const { setLogIn } = useAppContext();
 
-  
   const signInHandler = async (event) => {
     event.preventDefault();
     const res = await fetch("api/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
-      credentials: "include", 
-      
+      credentials: "include",
     });
     const data = await res.json();
-    if(res.status == 200){
-
-    //   alert("Logged in");
-    // setLogIn(true);
-    router.push("/")
-    }else{
-      alert(res.message)
+    if (res.status == 200) {
+      alert("Logged in");
+      setLogIn(true);
+      router.push("/");
+    } else {
+      alert(data.message);
     }
     console.log(data);
   };
@@ -76,7 +75,6 @@ function Login({setLogIn}) {
             Login
           </button>
         </div>
-
       </form>
     </div>
   );

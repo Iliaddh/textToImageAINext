@@ -26,7 +26,7 @@ console.log(email, password)
     const isPasswordValid = await bcryptjs.compare(password, user.password);
     console.log(isPasswordValid)
     if (!isPasswordValid) {
-      return NextResponse.json({ message: "Invalid password" });
+      return NextResponse.json({ message: "Invalid password" }, {status: 401});
     }
 
      
