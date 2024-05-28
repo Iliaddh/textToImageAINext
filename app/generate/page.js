@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Router } from "next/router";
+import  Router  from "next/router";
 import { preview } from "@/assets";
 import {getRandomPrompt} from "@/utils";
 import { FormField } from "../(components)";
@@ -66,7 +66,7 @@ const CreatePost = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          "https://text-to-image-ai-jz7v.onrender.com/api/v1/post",
+          "/api/post",
           {
             method: "POST",
             headers: {

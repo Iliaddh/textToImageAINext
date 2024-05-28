@@ -7,6 +7,7 @@ import { Card } from "./(components)";
 import { FormField } from "./(components)";
 import Link from "next/link";
 import Logo from "@/assets/logo";
+import Router from "next/router";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -32,35 +33,35 @@ function Home() {
   }
 
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     setLoading(true);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
 
-  //     try {
-  //       const response = await fetch(
-  //         "https://text-to-image-ai-jz7v.onrender.com/api/v1/post",
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-  //       );
+      try {
+        const response = await fetch(
+          "/api/post",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-  //       if (response.ok) {
-  //         const result = await response.json();
-  //         console.log(response);
+        if (response.ok) {
+          const result = await response.json();
+          console.log(response);
 
-  //         setAllPosts(result.data.reverse());
-  //       }
-  //     } catch (error) {
-  //       alert(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchPosts();
-  // }, []);
+          setAllPosts(result.data.reverse());
+        }
+      } catch (error) {
+        alert(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
 
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);

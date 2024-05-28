@@ -1,11 +1,14 @@
-import mongoose from "mongoose";  
+import mongoose from "mongoose"; 
+ 
 
-const Post = new mongoose.Schema({
+// Define the schema
+const postSchema = new mongoose.Schema({
   name: { type: String, required: true },
   prompt: { type: String, required: true },
   photo: { type: String, required: true },
 });
 
-const PostSchema = mongoose.model("Post", Post);
+// Check if the model already exists before creating it
+const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 
-export default PostSchema;
+export default Post;
