@@ -3,7 +3,7 @@ import Logo from "@/assets/Logo";
 
 function Footer() {
   return (
-    <footer className="footer p-4 text-neutral-content bg-green-600 mt-auto  ">
+    <footer className="footer p-4 text-neutral-content bg-green-600 mt-auto rounded-lg ">
       <aside>
         <Logo className="w-12 object-contain"/>
         <p>
