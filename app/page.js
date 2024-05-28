@@ -7,7 +7,7 @@ import { Card } from "./(components)";
 import { FormField } from "./(components)";
 import Link from "next/link";
 import Logo from "@/assets/logo";
-import Router from "next/router";
+import Router from "next/navigation";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);

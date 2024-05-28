@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import  Router  from "next/router";
+import React, { useState } from "react"; 
 import { preview } from "@/assets";
 import {getRandomPrompt} from "@/utils";
 import { FormField } from "../(components)";
 import { Card } from "../(components)";
 import { Loader } from "../(components)";
-
+import { useRouter } from 'next/navigation';
 const CreatePost = () => { 
-
+  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     prompt: "",
@@ -27,7 +26,7 @@ const CreatePost = () => {
     setForm({ ...form, prompt: randomPrompt });
   };
 
-  const generateImage = async () => {
+  const generateImage = async () => { 
     if (form.prompt) {
       try {
         setGeneratingImg(true);
@@ -78,7 +77,7 @@ const CreatePost = () => {
 
         await response.json();
         alert("Success");
-        Router.push("/");
+        router.push("/");
       } catch (err) {
         alert(err);
       } finally {

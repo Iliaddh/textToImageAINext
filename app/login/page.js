@@ -1,17 +1,19 @@
-"use client"
-
-import React, { useState } from "react"; 
-import Router from "next/router";
+"use client";
+  
+import React, { useState } from "react";
 import Link from "next/link";
+import Router from "next/router";
+import { useRouter } from "next/navigation";
 
-function Login({setLogIn}) {
+function Login({setLogIn}) {  
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(""); 
 
   
   const signInHandler = async (event) => {
     event.preventDefault();
-    const res = await fetch("http://localhost:8080/signin", {
+    const res = await fetch("api/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
@@ -20,9 +22,10 @@ function Login({setLogIn}) {
     });
     const data = await res.json();
     if(res.status == 200){
-      alert("Logged in");
-    setLogIn(true);
-    Router.push("/");
+
+    //   alert("Logged in");
+    // setLogIn(true);
+    router.push("/")
     }else{
       alert(res.message)
     }
@@ -63,7 +66,7 @@ function Login({setLogIn}) {
             </a>
           </label>
           <label className="label">
-            <Link to="/signup" className="label-text-alt link link-hover">
+            <Link href="/signup" className="label-text-alt link link-hover">
               Dont have an account?
             </Link>
           </label>
@@ -73,6 +76,7 @@ function Login({setLogIn}) {
             Login
           </button>
         </div>
+
       </form>
     </div>
   );
