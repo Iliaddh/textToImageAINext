@@ -1,10 +1,12 @@
 "use client";
 
+import "./globals.css";
 import React, { useState, useEffect } from "react";
 import { Loader } from "./(components)";
 import { Card } from "./(components)";
 import { FormField } from "./(components)";
-import Link from 'next/link';
+import Link from "next/link";
+import Logo from "@/assets/logo";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -21,37 +23,44 @@ function Home() {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState(null);
-  
+  const [signUp, setSignUp] = useState(false);
+  const [logIn, setLogIn] = useState(false);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
+  const logOutHandler = () => {
+    setLogIn(false);
+    setSignUp(false);
+  }
 
-      try {
-        const response = await fetch(
-          "https://text-to-image-ai-jz7v.onrender.com/api/v1/post",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
 
-        if (response.ok) {
-          const result = await response.json();
-          console.log(response);
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     setLoading(true);
 
-          setAllPosts(result.data.reverse());
-        }
-      } catch (error) {
-        alert(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPosts();
-  }, []);
+  //     try {
+  //       const response = await fetch(
+  //         "https://text-to-image-ai-jz7v.onrender.com/api/v1/post",
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+
+  //       if (response.ok) {
+  //         const result = await response.json();
+  //         console.log(response);
+
+  //         setAllPosts(result.data.reverse());
+  //       }
+  //     } catch (error) {
+  //       alert(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchPosts();
+  // }, []);
 
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);
@@ -70,6 +79,65 @@ function Home() {
   };
   return (
     <>
+      <div className="navbar bg-base-100 ">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Parent</a>
+                <ul className="p-2">
+                  <li>
+                    <a>Submenu 1</a>
+                  </li>
+                  <li>
+                    <a>Submenu 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a>Item 3</a>
+              </li>
+            </ul>
+          </div>
+
+          <Logo/>
+        </div>
+        <div className="navbar-center lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link href="/">
+                <p>Home</p>
+              </Link>
+            </li>
+            <li>
+              <a>About us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="navbar-end">
+          {logIn || signUp ? (
+            <button
+              className="btn btn-success  text-white "
+              onClick={logOutHandler}
+            >
+              Log out
+            </button>
+          ) : (
+            <Link href="/login">
+              <button className="btn btn-success  text-white w-16">
+                Login
+              </button>
+            </Link>
+          )}
+        </div>
+      </div>
       <div className="hero min-h-96 bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -79,7 +147,7 @@ function Home() {
               AI-powered image generator lets you create professional-quality
               images with just a few clicks.
             </p>
-            <Link to="/generate" className="mx-4">
+            <Link href="/generate" className="mx-4">
               <button className="btn btn-success  text-white drop-shadow-xl w-24">
                 Create
               </button>

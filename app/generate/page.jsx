@@ -6,6 +6,7 @@ import { preview } from "@/assets";
 import {getRandomPrompt} from "@/utils";
 import { FormField } from "../(components)";
 import { Card } from "../(components)";
+import { Loader } from "../(components)";
 
 const CreatePost = () => { 
 
@@ -30,8 +31,9 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
+        console.log("comes here")
         const response = await fetch(
-          "https://text-to-image-ai-jz7v.onrender.com/api/v1/dalle",
+          "/api/generate",
           {
             method: "POST",
             headers: {
@@ -40,13 +42,15 @@ const CreatePost = () => {
             body: JSON.stringify({
               prompt: form.prompt,
             }),
+            
           }
         );
-
+        console.log(response)
         const data = await response.json();
+        console.log(data)
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` }); 
       } catch (err) {
-        alert(err);
+        console.log(err.message)
       } finally {
         setGeneratingImg(false);
       }

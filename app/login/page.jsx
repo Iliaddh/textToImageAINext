@@ -1,6 +1,8 @@
+"use client"
+
 import React, { useState } from "react"; 
 import Router from "next/router";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 function Login({setLogIn}) {
   const [email, setEmail] = useState("");
