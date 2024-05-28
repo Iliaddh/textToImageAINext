@@ -29,8 +29,7 @@ const CreatePost = () => {
   const generateImage = async () => { 
     if (form.prompt) {
       try {
-        setGeneratingImg(true);
-        console.log("comes here")
+        setGeneratingImg(true); 
         const response = await fetch(
           "/api/generate",
           {
