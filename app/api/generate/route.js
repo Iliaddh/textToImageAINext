@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
-export const maxDuration = 300; 
+export const maxDuration = 60; 
 
 dotenv.config();
 const openai = new OpenAI(process.env.OPENAI_API_KEY); 
