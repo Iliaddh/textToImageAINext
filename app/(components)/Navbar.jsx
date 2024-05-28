@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Logo from "@/assets/logo";
+import Logo from "@/assets/Logo";
 
 function Navbar() {
   return (

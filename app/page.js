@@ -6,7 +6,7 @@ import { Loader } from "./(components)";
 import { Card } from "./(components)";
 import { FormField } from "./(components)";
 import Link from "next/link";
-import Logo from "@/assets/logo";
+import Logo from "@/assets/Logo";
 import Router from "next/navigation";
 import { useAppContext } from "@/context/page";
 const RenderCards = ({ data, title }) => {
