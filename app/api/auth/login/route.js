@@ -19,7 +19,7 @@ console.log(email, password)
     // Check if the user exists
     const user = await User.findOne({ email: email });
     if (!user) {
-      return NextResponse.json({ message: "User not found" });
+      return NextResponse.json({ message: "User not found" }, {status: 404});
     }
 
     // Check if the password is correct
@@ -32,7 +32,7 @@ console.log(email, password)
      
  
     // If everything is correct, user is authenticated
-    return NextResponse.json({ message: "Sign-in successful", email: user.email });
+    return NextResponse.json({ message: "Sign-in successful", email: user.email }, {status: 200});
   } catch (error) {
     console.error("Error signing in:", error);
     return NextResponse.json({ message: "Internal server error" });

@@ -1,8 +1,24 @@
 import React from "react";
 import Link from "next/link";
 import Logo from "@/assets/Logo";
+import { useAppContext } from "@/context/page";
+import { useRouter } from "next/navigation";
 
-function Navbar() {
+function Navbar() { 
+  const router = useRouter();
+  const { 
+    logIn, 
+    signUp, 
+    setLogIn,
+    setSignUp,
+  } = useAppContext();
+
+  const logOutHandler = () => {
+    setLogIn(false);
+    setSignUp(false);
+    router.push("/");
+    
+  }
   return (
     <div className="navbar bg-base-100 ">
         <div className="navbar-start">
@@ -31,14 +47,14 @@ function Navbar() {
             </ul>
           </div>
 
-          <Link to="/">
+          <Link href="/">
             <Logo/>
           </Link>
         </div>
         <div className="navbar-center lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/">
+              <Link href="/">
                 <p>Home</p>
               </Link>
             </li>
@@ -49,7 +65,7 @@ function Navbar() {
         </div>
 
         <div className="navbar-end">
-          {logIn || signUp ? <button className="btn btn-success  text-white " onClick={logOutHandler} >Log out</button>: <Link to="/login">
+          {logIn || signUp ? <button className="btn btn-success  text-white " onClick={logOutHandler} >Log out</button>: <Link href="/login">
             <button className="btn btn-success  text-white w-16" >Login</button>
           </Link>}
         </div>

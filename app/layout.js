@@ -16,9 +16,11 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AppWrapper>
           {children}
-          <Footer />
+          
         </AppWrapper>
+        <Footer />
       </body>
+      
     </html>
   );
 }

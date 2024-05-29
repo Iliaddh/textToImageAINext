@@ -3,9 +3,9 @@ import Logo from "@/assets/Logo";
 
 function Footer() {
   return (
-    <footer className="footer p-4 text-neutral-content bg-green-600 mt-auto rounded-lg ">
+    <footer className="footer p-4 text-neutral-content bg-green-600 rounded-lg ">
       <aside>
-        <Logo className="w-12 object-contain"/>
+        <Logo className="w-12 object-contain" />
         <p>
           ArtifyMe All rights reserved©
           <br />

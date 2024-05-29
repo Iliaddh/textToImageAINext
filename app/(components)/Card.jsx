@@ -1,6 +1,5 @@
- 
-import { download } from "@/assets";
-import {downloadImage} from "@/utils";
+import Image from "next/image";
+import { downloadImage } from "@/utils";
 
 const Card = ({ _id, name, prompt, photo }) => (
   <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card">
@@ -24,9 +23,11 @@ const Card = ({ _id, name, prompt, photo }) => (
           onClick={() => downloadImage(_id, photo)}
           className="outline-none bg-transparent border-none"
         >
-          <img
-            src={download}
-            alt="download"
+          <Image
+            src="/images/download.png"
+            alt="Download"
+            width={20}
+            height={20}
             className="w-6 h-6 object-contain invert"
           />
         </button>
