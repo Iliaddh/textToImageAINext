@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 import Logo from "@/assets/Logo";
@@ -66,7 +67,7 @@ function Navbar() {
 
         <div className="navbar-end">
           {logIn || signUp ? <button className="btn btn-success  text-white " onClick={logOutHandler} >Log out</button>: <Link href="/login">
-            <button className="btn btn-success  text-white w-16" >Login</button>
+            <button className="btn btn-success  text-white w-16" >LOG IN</button>
           </Link>}
         </div>
       </div>

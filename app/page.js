@@ -7,8 +7,8 @@ import { Card } from "./(components)";
 import { FormField } from "./(components)";
 import Link from "next/link";
 import Logo from "@/assets/Logo";
-import Router from "next/navigation";
 import { useAppContext } from "@/context/page";
+import { useRouter } from "next/navigation";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -20,6 +20,7 @@ const RenderCards = ({ data, title }) => {
 };
 
 function Home() {
+  const router = useRouter();
   const {
     loading,
     setLoading,
@@ -84,6 +85,14 @@ function Home() {
       }, 500)
     );
   };
+
+  const createHandler = () => {
+    if (logIn || signUp) {
+      router.push("/generate");
+    } else {
+      router.push("/login");
+    }
+  }
   return (
     <>
       <div className="navbar bg-base-100 ">
@@ -138,8 +147,8 @@ function Home() {
             </button>
           ) : (
             <Link href="/login">
-              <button className="btn btn-success  text-white w-16">
-                Login
+              <button className="btn btn-success  text-white w-18">
+                LOG IN
               </button>
             </Link>
           )}
@@ -154,11 +163,9 @@ function Home() {
               AI-powered image generator lets you create professional-quality
               images with just a few clicks.
             </p>
-            <Link href="/generate" className="mx-4">
-              <button className="btn btn-success  text-white drop-shadow-xl w-24">
-                Create
-              </button>
-            </Link>
+            <button onClick={createHandler} className="btn btn-success  text-white drop-shadow-xl w-24">
+              Create
+            </button>
           </div>
         </div>
       </div>
