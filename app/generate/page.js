@@ -82,8 +82,7 @@ const CreatePost = () => {
   };
 
   return (
-    <>
-      <Navbar />
+    <> 
       <section className="max-w-7xl mx-auto py-6 mb-12">
         <div>
           <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>

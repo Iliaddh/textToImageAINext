@@ -9,6 +9,14 @@ import Link from "next/link";
 import Logo from "@/assets/Logo";
 import { useAppContext } from "@/context/page";
 import { useRouter } from "next/navigation";
+import {
+  SignOutButton,
+  SignedOut,
+  SignedIn,
+  SignInButton,
+  RedirectToSignIn,
+  useAuth
+} from "@clerk/nextjs";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -20,6 +28,7 @@ const RenderCards = ({ data, title }) => {
 };
 
 function Home() {
+  const {isSignedIn} = useAuth();
   const router = useRouter();
   const {
     loading,
@@ -90,70 +99,11 @@ function Home() {
     if (logIn || signUp) {
       router.push("/generate");
     } else {
-      router.push("/login");
+      router.push("/sign-in");
     }
-  }
+  };
   return (
     <>
-      <div className="navbar bg-base-100 ">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
-          </div>
-
-          <Logo />
-        </div>
-        <div className="navbar-center lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link href="/">
-                <p>Home</p>
-              </Link>
-            </li>
-            <li>
-              <a>About us</a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="navbar-end">
-          {logIn || signUp ? (
-            <button
-              className="btn btn-success  text-white "
-              onClick={logOutHandler}
-            >
-              Log out
-            </button>
-          ) : (
-            <Link href="/login">
-              <button className="btn btn-success  text-white w-18">
-                LOG IN
-              </button>
-            </Link>
-          )}
-        </div>
-      </div>
       <div className="hero min-h-96 bg-base-200 rounded-md">
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -163,9 +113,12 @@ function Home() {
               AI-powered image generator lets you create professional-quality
               images with just a few clicks.
             </p>
-            <button onClick={createHandler} className="btn btn-success  text-white drop-shadow-xl w-24">
-              Create
-            </button>
+            <Link href={isSignedIn ? "/generate" : "sign-in"}>
+              <p className="btn btn-success  text-white drop-shadow-xl w-24">
+                
+                Create
+              </p>
+            </Link>
           </div>
         </div>
       </div>

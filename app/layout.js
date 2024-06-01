@@ -2,6 +2,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "./(components)/Footer";
 import { AppWrapper } from "@/context/page";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import Navbar from "./(components)/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,15 +20,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="mx-10 my-4">
-      <body className={inter.className}>
-        <AppWrapper>
-          {children}
-          
-        </AppWrapper>
+    <ClerkProvider>
+      <html lang="en" className="mx-10 my-4">
+        <body className={inter.className}>
+          <AppWrapper>
+            <Navbar />
+            {children}
+          </AppWrapper>
+        </body>
         <Footer />
-      </body>
-      
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }
