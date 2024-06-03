@@ -1,35 +1,23 @@
 "use client";
-import { UserButton } from "@clerk/nextjs";
+import { SignOutButton, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import SideBar from "./SideBar";
 
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
-      <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block w-5 h-5 stroke-current xl:hidden"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-      </div>
+      <SideBar/>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="text-lg font-bold ml-4">ArtifyMe</a>
       </div>
+      <Link href="/">
+        <button className="mx-12 btn btn-square btn-ghost">Home</button>
+      </Link>
       <div className="flex-none">
-      <UserButton />
+        <UserButton />
       </div>
     </div>
   );
 };
-
 
 export default Navbar;

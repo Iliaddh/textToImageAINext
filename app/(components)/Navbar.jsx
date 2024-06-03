@@ -17,6 +17,11 @@ function Navbar() {
   const pathname = usePathname();
   console.log(pathname);
   const router = useRouter(); 
+
+  const {
+    pageRequest,
+    setPageRequest,
+  } = useAppContext();
    
   return (
     <div className="navbar bg-base-100 ">
@@ -77,7 +82,7 @@ function Navbar() {
               className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link href="/dashboard">
+                <Link href="/dashboard"  onClick = {setPageRequest("/dashboard")}>
                   <p>Dashboard</p>
                 </Link>
               </li>

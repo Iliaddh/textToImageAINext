@@ -115,7 +115,7 @@ function Home() {
               AI-powered image generator lets you create professional-quality
               images with just a few clicks.
             </p>
-            <Link href={isSignedIn ? "/generate" : "sign-in"}>
+            <Link href={isSignedIn ? "/dashboard" : "sign-in"}>
               <p className="btn btn-success  text-white drop-shadow-xl w-24">
                 
                 Create

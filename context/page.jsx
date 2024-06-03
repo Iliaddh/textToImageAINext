@@ -12,6 +12,7 @@ export function AppWrapper({ children }) {
   const [searchedResults, setSearchedResults] = useState(null);
   const [signUp, setSignUp] = useState(false);
   const [logIn, setLogIn] = useState(false);
+  const[pageRequest, setPageRequest] = useState("");
 
   
 
@@ -32,6 +33,8 @@ export function AppWrapper({ children }) {
         setSearchTimeout,
         searchedResults,
         setSearchedResults,
+        pageRequest,
+        setPageRequest
       }}
     >
       {children}
