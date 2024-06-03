@@ -1,11 +1,12 @@
-import { UserButton } from "@clerk/nextjs";
+"use client";
 import React from "react";
+import Navbar from "./(components)/DashboardNavbar";
 
 const Dashboard = () => {
   return (
     <div>
+      <Navbar />
       <p>Dashboard</p>
-      <UserButton/>
     </div>
   );
 };

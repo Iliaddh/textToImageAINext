@@ -24,11 +24,11 @@ export default function RootLayout({ children }) {
       <html lang="en" className="mx-10 my-4">
         <body className={inter.className}>
           <AppWrapper>
-            <Navbar />
             {children}
           </AppWrapper>
+          <Footer />
         </body>
-        <Footer />
+        
       </html>
     </ClerkProvider>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Logo from "@/assets/Logo";
 import { useAppContext } from "@/context/page";
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   SignOutButton,
   SignedOut,
@@ -11,9 +12,11 @@ import {
   SignInButton,
 } from "@clerk/nextjs"; 
 
-function Navbar() {
-  const router = useRouter(); 
 
+function Navbar() {
+  const pathname = usePathname();
+  console.log(pathname);
+  const router = useRouter(); 
    
   return (
     <div className="navbar bg-base-100 ">

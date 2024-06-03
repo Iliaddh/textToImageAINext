@@ -9,6 +9,7 @@ import Link from "next/link";
 import Logo from "@/assets/Logo";
 import { useAppContext } from "@/context/page";
 import { useRouter } from "next/navigation";
+import Navbar from "./(components)/Navbar";
 import {
   SignOutButton,
   SignedOut,
@@ -104,6 +105,7 @@ function Home() {
   };
   return (
     <>
+    <Navbar />
       <div className="hero min-h-96 bg-base-200 rounded-md">
         <div className="hero-content text-center">
           <div className="max-w-md">

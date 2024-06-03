@@ -3,8 +3,9 @@ import Navbar from "../(components)/Navbar";
 
 const DashboardLayout = ({ children }) => {
   return (
-    <div className="h-full">
-      {children}
+    <div className="h-full relative">
+        <Navbar/>
+        {children}
     </div>
   );
 };
