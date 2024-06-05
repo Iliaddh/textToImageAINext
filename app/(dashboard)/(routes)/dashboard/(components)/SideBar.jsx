@@ -3,15 +3,17 @@ import { SignOutButton } from "@clerk/nextjs";
 import { useState } from "react";
 import { useAppContext } from "@/context/page";
 import Link from "next/link";
+import FreeCounter from "./FreeCounter";
 
-const SideBar = () => {
+const SideBar = ({apiLimitCount}) => {
   const { pageRequest, setPageRequest } = useAppContext();
-
+  const [open, setOpen] = useState(false);
+  
   return (
     <div className="flex-none">
-      <div className="drawer">
-        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content p-0">
+      <div className="drawer z-10">
+        <input id="my-drawer" type="checkbox" className="drawer-toggle" checked ={open} readOnly/>
+        <div className="drawer-content p-0" onClick={() => setOpen(!open)}>
           {/* Page content here */}
           <label htmlFor="my-drawer" className="btn drawer-button">
             <svg
@@ -29,29 +31,53 @@ const SideBar = () => {
             </svg>
           </label>
         </div>
-        <div className="drawer-side">
+        {/*  */}
+
+        <div className={`drawer-side ${open ? 'block' : 'hidden'}`}>
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
             className="drawer-overlay"
+            // onClick={() => setOpen(false)}
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 min-h-full  text-base-content bg-slate-800">
             {/* Sidebar content here */}
-            <li onClick={() => setPageRequest("/generate")}>
-              <p>Image Generator</p>
+            <li
+              onClick={() => {
+                setPageRequest("/generate");
+                setOpen(false);
+              }}
+            >
+              <p className="text-white">Image Generator</p>
             </li>
-            <li onClick={() => setPageRequest("/dashboard")}>
-              <p>Profile</p>
+            <li
+              onClick={() => {
+                setPageRequest("/dashboard");
+                setOpen(false);
+              }}
+            >
+              <p className="text-white">Gallery</p>
             </li>
             <li>
-              <p onClick={() => setPageRequest("/billing")}>Billing</p>
+              <p className="text-white"
+                onClick={() => {
+                  setPageRequest("/billing");
+                  setOpen(false);
+                }}
+              >
+                Billing
+              </p>
             </li>
-            <li>
+            <li className="text-white">
               <SignOutButton />
             </li>
+            <FreeCounter apiLimitCount= {apiLimitCount}/>
           </ul>
+          
         </div>
+        
       </div>
+      
     </div>
   );
 };

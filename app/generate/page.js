@@ -8,6 +8,7 @@ import { Card } from "../(components)";
 import { Loader } from "../(components)";
 import { useRouter } from "next/navigation";
 import Navbar from "../(components)/Navbar";
+import { useAppContext } from "@/context/page";
 const CreatePost = () => {
   const router = useRouter();
   const [form, setForm] = useState({
@@ -15,6 +16,10 @@ const CreatePost = () => {
     prompt: "",
     photo: "",
   });
+  const {
+    setPageRequest,
+  } = useAppContext();
+  const [posted, setPosted] = useState(false);
 
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,9 +45,7 @@ const CreatePost = () => {
             prompt: form.prompt,
           }),
         });
-        console.log(response);
         const data = await response.json();
-        console.log(data);
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (err) {
         console.log(err.message);
@@ -68,11 +71,11 @@ const CreatePost = () => {
           body: JSON.stringify({ ...form }),
         });
 
-       if(response.ok) {
-        await response.json();
-        alert("Success");
-        router.push("/");
-       }
+        if (response.ok) {
+          await response.json();
+          setPosted(true);
+          alert("Success");
+        }
       } catch (err) {
         alert(err);
       } finally {
@@ -84,7 +87,7 @@ const CreatePost = () => {
   };
 
   return (
-    <> 
+    <>
       <section className="max-w-7xl mx-auto py-6 mb-12">
         <div>
           <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
@@ -96,15 +99,6 @@ const CreatePost = () => {
 
         <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-5">
-            <FormField
-              labelName="Your Name"
-              type="text"
-              name="name"
-              placeholder="Ex., john doe"
-              value={form.name}
-              handleChange={handleChange}
-            />
-
             <FormField
               labelName="Prompt"
               type="text"
@@ -152,16 +146,18 @@ const CreatePost = () => {
           </div>
 
           <div className="mt-10">
-            <p className="mt-2 text-[#666e75] text-[14px]">
-              ** Once you have created the image you want, you can share it with
-              others in the community **
-            </p>
+            <p className="mt-2 text-[#666e75] text-[14px]"></p>
             <button
               type="submit"
               className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
             >
-              {loading ? "Sharing..." : "Share with the Community"}
+              {loading ? "Saving..." : "Save it to gallery"}
             </button>
+            {posted && (
+              <button onClick={() => setPageRequest("/dashboard")} className="mt-3 ml-10 text-white bg-[#e25592] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Go to gallery
+              </button>
+            )}
           </div>
         </form>
       </section>

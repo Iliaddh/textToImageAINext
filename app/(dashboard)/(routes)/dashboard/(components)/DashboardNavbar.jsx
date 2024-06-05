@@ -3,10 +3,10 @@ import { SignOutButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import SideBar from "./SideBar";
 
-const Navbar = () => {
+const DashboardNavbar = ({apiLimitCount}) => {
   return (
     <div className="navbar bg-base-100">
-      <SideBar/>
+      <SideBar apiLimitCount ={ apiLimitCount}/>
       <div className="flex-1">
         <a className="text-lg font-bold ml-4">ArtifyMe</a>
       </div>
@@ -20,4 +20,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DashboardNavbar;
