@@ -68,9 +68,11 @@ const CreatePost = () => {
           body: JSON.stringify({ ...form }),
         });
 
+       if(response.ok) {
         await response.json();
         alert("Success");
         router.push("/");
+       }
       } catch (err) {
         alert(err);
       } finally {

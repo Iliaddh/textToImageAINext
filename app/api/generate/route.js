@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
+import { increaseLimit, checkLimit } from "@/lib/api-limit";
 export const maxDuration = 60; 
 
 dotenv.config();
@@ -11,6 +12,10 @@ export async function POST(req ){
   // const data = await req.json();
   ///////////////////////////////////////////
   const {prompt} = await req.json();
+  const freeTrial = await checkLimit(req);
+  if(!freeTrial){
+    return NextResponse.json("You have reached the limit of free trials", { status: 403});
+  }
   try {
     const aiResponse = await openai.images.generate({ 
       model: "dall-e-3",
@@ -22,7 +27,7 @@ export async function POST(req ){
     });
     // console.log(aiResponse)
     const image = aiResponse.data[0].b64_json; 
-    
+    await increaseLimit(req);
     return NextResponse.json({ photo : image });
   } catch (error) {
     return NextResponse.json({ error: error.message });

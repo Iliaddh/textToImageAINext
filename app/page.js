@@ -64,11 +64,10 @@ function Home() {
             "Content-Type": "application/json",
           },
         });
-
-        if (response.ok) {
-          const result = await response.json();
-          console.log(response);
-
+        const result = await response.json();
+        console.log(result)
+        if (result.data != null) {
+          
           setAllPosts(result.data.reverse());
         }
       } catch (error) {
