@@ -29,8 +29,12 @@ const FreeCounter = ({ apiLimitCount }) => {
           max="3"
         ></progress>
         <div className="flex justify-center items-center">
-          <button className="flex justify-center text-center w-full rounded-md items-center bg-black py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0">
+          <button
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+            className="flex justify-center text-center w-full rounded-md items-center bg-black py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0"
+          >
             <p className="px-4">Upgrade</p>
+
             <div>
               <svg
                 className="fill-white"
@@ -51,6 +55,18 @@ const FreeCounter = ({ apiLimitCount }) => {
           </button>
         </div>
       </div>
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <p className="py-4">Press ESC key or click on ✕ button to close</p>
+        </div>
+      </dialog>
     </div>
   );
 };

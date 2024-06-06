@@ -13,7 +13,7 @@ const DashboardLayout = async ({ children }) => {
     <div className="h-full">
       <DashboardNavbar apiLimitCount ={apiLimitCount} />
       {children}
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 };

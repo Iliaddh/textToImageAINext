@@ -36,7 +36,7 @@ function Home() {
   const { logIn, signUp } = useAppContext();
 
   return (
-    <>
+    <div className="h-full">
       <Navbar />
       <div className="hero min-h-96 bg-base-200 rounded-md">
         <div className="hero-content text-center">
@@ -55,8 +55,14 @@ function Home() {
           </div>
         </div>
       </div>
-      <Footer/>
-    </>
+      <div className="flex flex-col w-full border-opacity-50 mt-10">
+        <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
+          content
+        </div>
+      </div>
+      
+      
+      </div>
   );
 }
 

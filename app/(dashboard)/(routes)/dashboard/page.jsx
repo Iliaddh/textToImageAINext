@@ -19,8 +19,7 @@ const RenderCards = ({ data, title }) => {
     <h2 className="mt-5 font-bold text-[#6469ff] text-xl uppercase">{title}</h2>
   );
 };
-const Dashboard = ({apiLimitCount}) => {
-  console.log(apiLimitCount)
+const Dashboard = ({ apiLimitCount }) => {
   const {
     pageRequest,
     setPageRequest,
@@ -100,9 +99,7 @@ const Dashboard = ({apiLimitCount}) => {
 
           <div className="mt-20">
             {loading ? (
-              <div className="flex justify-center items-center">
-                <Loader />
-              </div>
+              <div className="skeleton w-42 h-42"></div>
             ) : (
               <>
                 {searchText && (
@@ -127,6 +124,7 @@ const Dashboard = ({apiLimitCount}) => {
         </section>
       )}
       {/* <Footer/> */}
+      
     </div>
   );
 };

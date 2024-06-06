@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
           <AppWrapper>
             {children}
           </AppWrapper>
-          {/* <Footer /> */}
+          <Footer />
         </body>
         
       </html>
