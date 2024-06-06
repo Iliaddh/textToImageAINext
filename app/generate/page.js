@@ -51,6 +51,7 @@ const CreatePost = () => {
         console.log(err.message);
       } finally {
         setGeneratingImg(false);
+        router.refresh();
       }
     } else {
       alert("Please provide proper prompt");

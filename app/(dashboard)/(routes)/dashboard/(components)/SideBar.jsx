@@ -5,14 +5,20 @@ import { useAppContext } from "@/context/page";
 import Link from "next/link";
 import FreeCounter from "./FreeCounter";
 
-const SideBar = ({apiLimitCount}) => {
+const SideBar = ({ apiLimitCount }) => {
   const { pageRequest, setPageRequest } = useAppContext();
   const [open, setOpen] = useState(false);
-  
+
   return (
     <div className="flex-none">
       <div className="drawer z-10">
-        <input id="my-drawer" type="checkbox" className="drawer-toggle" checked ={open} readOnly/>
+        <input
+          id="my-drawer"
+          type="checkbox"
+          className="drawer-toggle"
+          checked={open}
+          readOnly
+        />
         <div className="drawer-content p-0" onClick={() => setOpen(!open)}>
           {/* Page content here */}
           <label htmlFor="my-drawer" className="btn drawer-button">
@@ -33,7 +39,7 @@ const SideBar = ({apiLimitCount}) => {
         </div>
         {/*  */}
 
-        <div className={`drawer-side ${open ? 'block' : 'hidden'}`}>
+        <div className={`drawer-side ${open ? "block" : "hidden"}`}>
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
@@ -59,7 +65,8 @@ const SideBar = ({apiLimitCount}) => {
               <p className="text-white">Gallery</p>
             </li>
             <li>
-              <p className="text-white"
+              <p
+                className="text-white"
                 onClick={() => {
                   setPageRequest("/billing");
                   setOpen(false);
@@ -71,13 +78,11 @@ const SideBar = ({apiLimitCount}) => {
             <li className="text-white">
               <SignOutButton />
             </li>
-            <FreeCounter apiLimitCount= {apiLimitCount}/>
+            <FreeCounter apiLimitCount={apiLimitCount} />
           </ul>
           
         </div>
-        
       </div>
-      
     </div>
   );
 };
