@@ -14,7 +14,7 @@ export async function POST(req ){
   const {prompt} = await req.json();
   const freeTrial = await checkLimit(req);
   if(!freeTrial){
-    return NextResponse.json("You have reached the limit of free trials", { status: 403});
+    return NextResponse.json({message : "You have reached the limit of free trials"}, { status: 403});
   }
   try {
     const aiResponse = await openai.images.generate({ 
@@ -30,7 +30,7 @@ export async function POST(req ){
     await increaseLimit(req);
     return NextResponse.json({ photo : image });
   } catch (error) {
-    return NextResponse.json({ error: error.message });
+    return NextResponse.json({ message: error.message }, { status: 500 });
   
   }
   //////////////////////////////////////////

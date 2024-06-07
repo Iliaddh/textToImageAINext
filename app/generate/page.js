@@ -7,7 +7,7 @@ import { FormField } from "../(components)";
 import { Card } from "../(components)";
 import { Loader } from "../(components)";
 import { useRouter } from "next/navigation";
-import Navbar from "../(components)/Navbar";
+import Dialog from "../(dashboard)/(routes)/dashboard/(components)/Dialog";
 import { useAppContext } from "@/context/page";
 const CreatePost = () => {
   const router = useRouter();
@@ -16,11 +16,9 @@ const CreatePost = () => {
     prompt: "",
     photo: "",
   });
-  const {
-    setPageRequest,
-  } = useAppContext();
+  const { setPageRequest } = useAppContext();
   const [posted, setPosted] = useState(false);
-
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -45,10 +43,15 @@ const CreatePost = () => {
             prompt: form.prompt,
           }),
         });
+        if (!response.ok) {
+          // If the response status is not in the range 200-299
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (err) {
         console.log(err.message);
+        setDialogOpen(true);
       } finally {
         setGeneratingImg(false);
         router.refresh();
@@ -85,6 +88,10 @@ const CreatePost = () => {
     } else {
       alert("Please generate an image with proper details");
     }
+  };
+
+  const closeDialog = () => {
+    setDialogOpen(false);
   };
 
   return (
@@ -155,11 +162,15 @@ const CreatePost = () => {
               {loading ? "Saving..." : "Save it to gallery"}
             </button>
             {posted && (
-              <button onClick={() => setPageRequest("/dashboard")} className="mt-3 ml-10 text-white bg-[#e25592] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+              <button
+                onClick={() => setPageRequest("/dashboard")}
+                className="mt-3 ml-10 text-white bg-[#e25592] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+              >
                 Go to gallery
               </button>
             )}
           </div>
+          <Dialog isOpen={isDialogOpen} onClose={closeDialog} />
         </form>
       </section>
     </>
