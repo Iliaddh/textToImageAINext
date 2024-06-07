@@ -46,7 +46,7 @@ const SideBar = ({ apiLimitCount }) => {
             className="drawer-overlay"
             // onClick={() => setOpen(false)}
           ></label>
-          <ul className="menu p-4 w-80 min-h-full  text-base-content bg-slate-800">
+          <ul className="menu p-4 w-80 min-h-full  text-base-content bg-slate-700">
             {/* Sidebar content here */}
             <li
               onClick={() => {

@@ -9,6 +9,8 @@ import { Loader } from "../(components)";
 import { useRouter } from "next/navigation";
 import Dialog from "../(dashboard)/(routes)/dashboard/(components)/Dialog";
 import { useAppContext } from "@/context/page";
+import Modal from "../(components)/Modal";
+import FreeCounter from "../(dashboard)/(routes)/dashboard/(components)/FreeCounter";
 const CreatePost = () => {
   const router = useRouter();
   const [form, setForm] = useState({
@@ -16,9 +18,9 @@ const CreatePost = () => {
     prompt: "",
     photo: "",
   });
-  const { setPageRequest } = useAppContext();
+  const { setPageRequest,isDialogOpen, setDialogOpen  } = useAppContext();
   const [posted, setPosted] = useState(false);
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -45,6 +47,7 @@ const CreatePost = () => {
         });
         if (!response.ok) {
           // If the response status is not in the range 200-299
+          setDialogOpen(true);
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
@@ -170,7 +173,9 @@ const CreatePost = () => {
               </button>
             )}
           </div>
-          <Dialog isOpen={isDialogOpen} onClose={closeDialog} />
+          {isDialogOpen && (
+            <Modal/>
+          )}
         </form>
       </section>
     </>
