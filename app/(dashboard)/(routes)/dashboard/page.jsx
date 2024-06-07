@@ -2,7 +2,7 @@
 import React from "react";
 import Navbar from "./(components)/DashboardNavbar";
 import { useAppContext } from "@/context/page";
-import CreatePost from "@/app/(generate)/page";
+import CreatePost from "@/app/generate/page";
 import Billing from "./(components)/Billing";
 import FormField from "../../../(components)/FormField";
 import Card from "../../../(components)/Card";
