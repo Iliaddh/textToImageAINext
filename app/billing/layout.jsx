@@ -1,19 +1,17 @@
 import React from "react";
-import Navbar from "../(components)/Navbar";
 import { auth } from "@clerk/nextjs/server";
-import SideBar from "../(dashboard)/(routes)/dashboard/(components)/SideBar";
 import DashboardNavbar from "../(dashboard)/(routes)/dashboard/(components)/DashboardNavbar";
 import { getApiLimitCount } from "@/lib/api-limit";
 import { redirect } from "next/navigation";
 
-const DashboardLayout = async ({ children }) => {
-  const { userId } = auth();
+const DashboardLayout = ({ children }) => {
+  const {userId} = auth()
   if (!userId) redirect("/sign-in");
-  const apiLimitCount = await getApiLimitCount(userId);
+  const apiLimitCount = getApiLimitCount(userId);
   return (
     <div className="h-full relative">
-      <DashboardNavbar apiLimitCount={apiLimitCount} />
-      {children}
+        <DashboardNavbar apiLimitCount={apiLimitCount}  /> 
+        {children}
     </div>
   );
 };

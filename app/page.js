@@ -1,39 +1,12 @@
 "use client";
-
-import "./globals.css";
 import React, { useState, useEffect } from "react";
-import { Loader } from "./(components)";
-import { Card } from "./(components)";
-import { FormField } from "./(components)";
 import Link from "next/link";
-import Logo from "@/assets/Logo";
-import { useAppContext } from "@/context/page";
-import { useRouter } from "next/navigation";
 import Navbar from "./(components)/Navbar";
-import {
-  SignOutButton,
-  SignedOut,
-  SignedIn,
-  SignInButton,
-  RedirectToSignIn,
-  useAuth,
-} from "@clerk/nextjs";
-import Footer from "./(components)/Footer";
-const RenderCards = ({ data, title }) => {
-  if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />);
-  }
+import { useAuth } from "@clerk/nextjs";
 
-  return (
-    <h2 className="mt-5 font-bold text-[#6469ff] text-xl uppercase">{title}</h2>
-  );
-};
 
 function Home() {
   const { isSignedIn } = useAuth();
-  const router = useRouter();
-
-  const { logIn, signUp } = useAppContext();
 
   return (
     <div className="h-full">
@@ -47,7 +20,7 @@ function Home() {
               AI-powered image generator lets you create professional-quality
               images with just a few clicks.
             </p>
-            <Link href={isSignedIn ? "/dashboard" : "sign-in"}>
+            <Link href={isSignedIn ? "/generate" : "sign-in"}>
               <p className="btn btn-success  text-white drop-shadow-xl w-24">
                 Create
               </p>
@@ -60,9 +33,7 @@ function Home() {
           content
         </div>
       </div>
-      
-      
-      </div>
+    </div>
   );
 }
 

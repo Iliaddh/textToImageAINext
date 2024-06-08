@@ -48,39 +48,39 @@ const SideBar = ({ apiLimitCount }) => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full  text-base-content bg-slate-700">
             {/* Sidebar content here */}
-            <li
-              onClick={() => {
-                setPageRequest("/generate");
-                setOpen(false);
-              }}
-            >
-              <p className="text-white">Image Generator</p>
-            </li>
-            <li
-              onClick={() => {
-                setPageRequest("/dashboard");
-                setOpen(false);
-              }}
-            >
-              <p className="text-white">Gallery</p>
-            </li>
-            <li>
-              <p
-                className="text-white"
+            <Link href="/generate">
+              <li
                 onClick={() => {
-                  setPageRequest("/billing");
                   setOpen(false);
                 }}
               >
-                Billing
-              </p>
-            </li>
+                <p className="text-white">Image Generator</p>
+              </li>
+            </Link>
+            <Link href="/dashboard">
+              <li
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <p className="text-white">Gallery</p>
+              </li>
+            </Link>
+            <Link href="/billing">
+              <li
+                className="text-white"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <p>Billing</p>
+              </li>
+            </Link>
             <li className="text-white">
               <SignOutButton />
             </li>
             <FreeCounter apiLimitCount={apiLimitCount} />
           </ul>
-          
         </div>
       </div>
     </div>

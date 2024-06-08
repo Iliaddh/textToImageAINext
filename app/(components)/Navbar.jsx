@@ -82,7 +82,7 @@ function Navbar() {
               className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link href="/dashboard"  onClick = {setPageRequest("/dashboard")}>
+                <Link href="/dashboard">
                   <p>Dashboard</p>
                 </Link>
               </li>

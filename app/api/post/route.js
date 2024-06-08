@@ -61,3 +61,38 @@ export async function POST(req, res) {
     }, 500);
   }
 }
+
+
+export async function DELETE(req, res) {
+  const { userId } = getAuth(req);
+  if (!userId) {
+    return;
+  }
+  try {
+    connectDB(process.env.MONGODB_URL);
+    const { photoId, photoUrl, } = await req.json();
+    const specificPost = await prisma.posts.findFirst({
+      where: {
+        photoUrl: photoUrl,
+        userId: userId,
+      },
+    })
+    const post = await prisma.posts.delete({
+      where: {
+        photoUrl: photoUrl,
+        userId: userId,
+        id: specificPost.id ,
+      },
+    });
+   
+    await cloudinary.uploader.destroy(photoId)
+    return NextResponse.json({ success: true, data: post });
+  } catch (err) {
+    console.log(err)
+    return NextResponse.json({
+      success: false,
+      message: "Unable to delete post, please try again",
+    }, 500);
+  }
+
+}

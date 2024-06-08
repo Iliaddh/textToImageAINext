@@ -4,13 +4,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { getRandomPrompt } from "@/utils";
 import { FormField } from "../(components)";
-import { Card } from "../(components)";
 import { Loader } from "../(components)";
-import { useRouter } from "next/navigation";
-import Dialog from "../(dashboard)/(routes)/dashboard/(components)/Dialog";
 import { useAppContext } from "@/context/page";
 import Modal from "../(components)/Modal";
-import FreeCounter from "../(dashboard)/(routes)/dashboard/(components)/FreeCounter";
+import { Link } from "lucide-react";
+import { useRouter } from "next/navigation";
 const CreatePost = () => {
   const router = useRouter();
   const [form, setForm] = useState({
@@ -18,9 +16,9 @@ const CreatePost = () => {
     prompt: "",
     photo: "",
   });
-  const { setPageRequest,isDialogOpen, setDialogOpen  } = useAppContext();
+  const { setPageRequest, isDialogOpen, setDialogOpen } = useAppContext();
   const [posted, setPosted] = useState(false);
-  
+
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -165,17 +163,10 @@ const CreatePost = () => {
               {loading ? "Saving..." : "Save it to gallery"}
             </button>
             {posted && (
-              <button
-                onClick={() => setPageRequest("/dashboard")}
-                className="mt-3 ml-10 text-white bg-[#e25592] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-              >
-                Go to gallery
-              </button>
+              router.push('/dashboard')
             )}
           </div>
-          {isDialogOpen && (
-            <Modal/>
-          )}
+          {isDialogOpen && <Modal />}
         </form>
       </section>
     </>

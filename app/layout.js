@@ -5,10 +5,6 @@ import Footer from "./(components)/Footer";
 import { AppWrapper } from "@/context/page";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
 } from "@clerk/nextjs";
 import Navbar from "./(components)/Navbar";
 

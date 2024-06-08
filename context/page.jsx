@@ -12,7 +12,6 @@ export function AppWrapper({ children }) {
   const [searchedResults, setSearchedResults] = useState(null);
   const [signUp, setSignUp] = useState(false);
   const [logIn, setLogIn] = useState(false);
-  const [pageRequest, setPageRequest] = useState("");
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   return (
@@ -32,8 +31,6 @@ export function AppWrapper({ children }) {
         setSearchTimeout,
         searchedResults,
         setSearchedResults,
-        pageRequest,
-        setPageRequest,
         isDialogOpen,
         setDialogOpen,
       }}
