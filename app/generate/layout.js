@@ -5,6 +5,7 @@ import SideBar from "../(dashboard)/(routes)/dashboard/(components)/SideBar";
 import DashboardNavbar from "../(dashboard)/(routes)/dashboard/(components)/DashboardNavbar";
 import { getApiLimitCount } from "@/lib/api-limit";
 import { redirect } from "next/navigation";
+import Footer from "../(components)/Footer";
 
 const DashboardLayout = async ({ children }) => {
   const { userId } = auth();
@@ -14,6 +15,7 @@ const DashboardLayout = async ({ children }) => {
     <div className="h-full relative">
       <DashboardNavbar apiLimitCount={apiLimitCount} />
       {children}
+      <Footer/>
     </div>
   );
 };

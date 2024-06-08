@@ -21,7 +21,7 @@ const FreeCounter = ({ apiLimitCount }) => {
   if (!mounted) return null;
 
   return (
-    <div className="px-3 bg-gray-600 flex justify-center  text-center rounded-md">
+    <div className="px-3 bg-gray-400 flex justify-center  text-center mt-20 rounded-md">
       <div className="text-center text-sm text-white mb-4 space-y-2">
         <p className="mt-2">
           {apiLimitCount}/{MAX_FREE_COUNTS} Free Generations
