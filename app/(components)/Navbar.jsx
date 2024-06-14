@@ -5,6 +5,7 @@ import Logo from "@/assets/Logo";
 import { useAppContext } from "@/context/page";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { CircleUserRound } from 'lucide-react';
 import {
   SignOutButton,
   SignedOut,
@@ -74,8 +75,8 @@ function Navbar() {
         </SignedOut>
         <SignedIn>
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn m-1">
-              Profile
+            <div tabIndex={0} role="button" className=" m-1">
+              <CircleUserRound size={26}/>
             </div>
             <ul
               tabIndex={0}

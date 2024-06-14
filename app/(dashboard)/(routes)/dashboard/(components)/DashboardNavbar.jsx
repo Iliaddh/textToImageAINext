@@ -8,7 +8,7 @@ const DashboardNavbar = ({apiLimitCount}) => {
     <div className="navbar bg-base-100">
       <SideBar apiLimitCount ={ apiLimitCount}/>
       <div className="flex-1">
-        <a className="text-xl font-bold ml-6">ArtifyMe</a>
+        <a className="text-xl font-bold ml-8">ArtifyMe</a>
       </div>
       <Link href="/">
         <button className="mx-12 btn btn-square btn-ghost">Home</button>
