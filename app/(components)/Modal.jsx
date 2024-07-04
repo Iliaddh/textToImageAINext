@@ -6,7 +6,7 @@ const Modal = () => {
   const { setDialogOpen } = useAppContext();
   return (
     <div
-      className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center p-4 sm:p-8"
+      className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center p-4 sm:p-8 z-10"
     >
       <div className="bg-white drop-shadow-xl p-4 sm:p-10 w-full max-w-md sm:max-w-2xl h-auto rounded-md ">
         <form method="dialog">
@@ -40,13 +40,39 @@ const Modal = () => {
           <div className="mt-4 collapse bg-base-200">
             <input type="radio" name="my-accordion-2" />
             <div className="collapse-title text-xl font-medium flex justify-between">
+              <p>Image editing</p>
+              <Check />
+            </div>
+            <div className="collapse-content">
+              <p>
+                Upgrade your plan to access tools to edit edit your AI generated image, and customize it the way you want!
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 collapse bg-base-200">
+            <input type="radio" name="my-accordion-2" />
+            <div className="collapse-title text-xl font-medium flex justify-between">
+              <p>Unlimited generations</p>
+              <Check />
+            </div>
+            <div className="collapse-content">
+              <p>
+              Upgrade your plan for unlimited generations, allowing you to
+              generate as many images as you need without restrictions.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-4 collapse bg-base-200">
+            <input type="radio" name="my-accordion-2" />
+            <div className="collapse-title text-xl font-medium flex justify-between">
               <p>Unlimited Downloads</p>
               <Check />
             </div>
             <div className="collapse-content">
               <p>
                 Upgrade your plan for unlimited downloads, allowing you to
-                generate as many images as you need without restrictions.
+                download your images without restrictions.
               </p>
             </div>
           </div>
