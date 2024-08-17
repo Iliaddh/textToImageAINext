@@ -7,6 +7,7 @@ import {
   ClerkProvider,
 } from "@clerk/nextjs";
 import Navbar from "./(components)/Navbar";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
