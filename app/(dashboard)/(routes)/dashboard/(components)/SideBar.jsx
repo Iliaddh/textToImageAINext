@@ -94,8 +94,8 @@ const SideBar = ({ apiLimitCount }) => {
 
     <div className="drawer z-10 w-10">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content w-4">
-        <label htmlFor="my-drawer" className="btn drawer-button">
+      <div className="drawer-content w-">
+        <label htmlFor="my-drawer" className=" drawer-button cursor-pointer bg-white border-none  mobile:px-1 mobile:py-0  laptop:p-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

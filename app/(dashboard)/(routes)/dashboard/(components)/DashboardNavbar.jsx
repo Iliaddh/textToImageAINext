@@ -6,12 +6,12 @@ import SideBar from "./SideBar";
 const DashboardNavbar = ({apiLimitCount}) => {
   return (
     <div className="navbar bg-base-100">
-      <SideBar apiLimitCount ={ apiLimitCount}/>
+      <SideBar  apiLimitCount ={ apiLimitCount}/>
       <div className="flex-1">
-        <a className="text-xl font-bold ml-8">ArtifyMe</a>
+        <a className="mobile:text-sm tablet:text-lg laptop:text-xl font-bold mobile:ml-4">ArtifyMe</a>
       </div>
       <Link href="/">
-        <button className="mx-12 btn btn-square btn-ghost">Home</button>
+        <button className=" mobile:mx-0 tablet:mx-8 rounded-md tablet:p-1 mobile:mr-4  mobile:text-sm">Home</button>
       </Link>
       <div className="flex-none">
         <UserButton />

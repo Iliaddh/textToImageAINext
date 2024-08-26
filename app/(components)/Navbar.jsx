@@ -2,10 +2,9 @@
 import React from "react";
 import Link from "next/link";
 import Logo from "@/assets/Logo";
-import { useAppContext } from "@/context/page";
-import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { CircleUserRound } from 'lucide-react';
+import { useAuth } from "@clerk/nextjs";
 import {
   SignOutButton,
   SignedOut,
@@ -17,13 +16,8 @@ import {
 function Navbar() {
   const pathname = usePathname();
   console.log(pathname);
-  const router = useRouter(); 
 
-  const {
-    pageRequest,
-    setPageRequest,
-  } = useAppContext();
-   
+  const { isSignedIn } = useAuth();
   return (
     <div className="navbar bg-base-100 ">
       <div className="navbar-start">
@@ -83,9 +77,14 @@ function Navbar() {
               className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link href="/dashboard">
+                {isSignedIn ? <Link href="/dashboard">
                   <p>Dashboard</p>
                 </Link>
+                : <Link href="/sign-in">
+                  <p>Sign In</p>
+                  </Link>
+                }
+                
               </li>
               <li>
                 <SignOutButton />
