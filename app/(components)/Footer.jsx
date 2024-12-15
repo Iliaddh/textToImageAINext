@@ -11,8 +11,7 @@ function Footer() {
           <br />
         </p>
       </aside>
-      <nav>
-        <h6 className="footer-title">Social</h6>
+      <nav className="flex justify-end w-full h-full items-center"> 
         <div className="grid grid-flow-col gap-4">
           <a>
             <svg

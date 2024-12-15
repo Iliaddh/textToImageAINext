@@ -3,7 +3,7 @@ import React from "react";
 import { useAppContext } from "@/context/page";
 import FormField from "../../../(components)/FormField";
 import Card from "../../../(components)/Card";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -15,11 +15,10 @@ const RenderCards = ({ data, title }) => {
   );
 };
 const Dashboard = () => {
+  const [loading, setLoading] = useState(false);
   const {
     searchText,
     setSearchText,
-    loading,
-    setLoading,
     searchTimeout,
     setSearchTimeout,
     setSearchedResults,
@@ -29,8 +28,8 @@ const Dashboard = () => {
   } = useAppContext();
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
+    setLoading(true);
+    const fetchPosts = async () => { 
 
       try {
         const response = await fetch("/api/post", {
@@ -67,7 +66,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="h-vh">
+    <div className="h-lvh">
+      
       <section className=" h-full">
         <div>
           <h1 className="font-extrabold text-[#222328] text-[32px]">Gallery</h1>
@@ -84,9 +84,9 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="mt-20">
+        <div className="mt-20 flex justify-center">
           {loading ? (
-            <div className="skeleton w-42 h-42"></div>
+            <span  className="loading mt-20 loading-spinner text-success"></span>
           ) : (
             <>
             
@@ -104,7 +104,7 @@ const Dashboard = () => {
                     title="No Search Results Found"
                   />
                 ) : (
-                  <RenderCards data={allPosts} title="No Posts Yet" />
+                  <RenderCards data={allPosts}  />
                 )}
               </div>
             </>

@@ -3,15 +3,14 @@ import React from "react";
 import Link from "next/link";
 import Logo from "@/assets/Logo";
 import { usePathname } from "next/navigation";
-import { CircleUserRound } from 'lucide-react';
+import { CircleUserRound } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import {
   SignOutButton,
   SignedOut,
   SignedIn,
   SignInButton,
-} from "@clerk/nextjs"; 
-
+} from "@clerk/nextjs";
 
 function Navbar() {
   const pathname = usePathname();
@@ -19,7 +18,7 @@ function Navbar() {
 
   const { isSignedIn } = useAuth();
   return (
-    <div className="navbar bg-base-100 ">
+    <div className="navbar bg-base-100 P-6">
       <div className="navbar-start">
         <div className="dropdown">
           <ul
@@ -52,11 +51,11 @@ function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link href="/">
-              <p>Home</p>
+              <p className="text-lg">Home</p>
             </Link>
           </li>
           <li>
-            <a>About us</a>
+            <a className="text-lg">About us</a>
           </li>
         </ul>
       </div>
@@ -70,21 +69,22 @@ function Navbar() {
         <SignedIn>
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className=" m-1">
-              <CircleUserRound size={26}/>
+              <CircleUserRound size={26} />
             </div>
             <ul
               tabIndex={0}
               className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                {isSignedIn ? <Link href="/dashboard">
-                  <p>Dashboard</p>
-                </Link>
-                : <Link href="/sign-in">
-                  <p>Sign In</p>
+                {isSignedIn ? (
+                  <Link href="/dashboard">
+                    <p>Dashboard</p>
                   </Link>
-                }
-                
+                ) : (
+                  <Link href="/sign-in">
+                    <p className="text-sm text-black">Sign In</p>
+                  </Link>
+                )}
               </li>
               <li>
                 <SignOutButton />

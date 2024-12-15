@@ -14,8 +14,13 @@ module.exports = {
       },
       screens: {
         'mobile': '320px',
-        'tablet': '500px',
-        'laptop': '1283px',
+      'mobile2': '375px',
+      'mobile3': '425px',
+      'tablet': '640px',
+      'tablet2': '768px',
+      'laptop': '1024px',
+        'desktop': '1280px',
+        'desktop2': '1536px',
       }
     },
   },
